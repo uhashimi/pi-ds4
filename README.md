@@ -73,6 +73,9 @@ variables win over the settings file.
 - `DS4_SERVER_BINARY`: custom `ds4-server` binary path
 - `DS4_WATCHDOG_SCRIPT`: custom watchdog script path
 - `DS4_API_KEY`: provider API key/token sent by Pi (default `dsv4-local`)
+- `DS4_CTX`: context window size (default `100000`); sets `--ctx` for ds4-server and `contextWindow` for the Pi model
+- `DS4_KV_DISK_SPACE_MB`: on-disk KV cache size in MB (default `8192`); sets `--kv-disk-space-mb` for ds4-server
+- `DS4_POWER`: inference power level 1–100 (default `80`); sets `--power` for ds4-server
 
 See `settings.example.json` for a complete example with a JSON schema reference.
 A minimal `~/.pi/ds4/settings.json` can look like this:
