@@ -1,7 +1,7 @@
 #!/bin/sh
 set -u
 
-managed_by="pi-sd4-provider"
+managed_by="pi-ds4-provider"
 ds4_dir=${1:-${DS4_DIR:-}}
 
 if [ -z "$ds4_dir" ]; then
@@ -75,7 +75,7 @@ active_lease_count() {
     pid=${name%.json}
     stale=0
 
-    grep -q '"managedBy"[[:space:]]*:[[:space:]]*"pi-sd4-provider"' "$file" 2>/dev/null || stale=1
+    grep -q '"managedBy"[[:space:]]*:[[:space:]]*"pi-ds4-provider"' "$file" 2>/dev/null || stale=1
     grep -q '"usesDs4"[[:space:]]*:[[:space:]]*true' "$file" 2>/dev/null || stale=1
     pid_alive "$pid" || stale=1
 
