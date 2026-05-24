@@ -50,7 +50,20 @@
     "watchdogScript": { "$ref": "#/$defs/nullableString" },
     "watchdog_script": { "$ref": "#/$defs/nullableString" },
     "DS4_WATCHDOG_SCRIPT": { "$ref": "#/$defs/nullableString" },
-    "ds4_watchdog_script": { "$ref": "#/$defs/nullableString" }
+    "ds4_watchdog_script": { "$ref": "#/$defs/nullableString" },
+
+    "ctx": { "$ref": "#/$defs/nullableNumber" },
+    "DS4_CTX": { "$ref": "#/$defs/nullableNumber" },
+    "ds4_ctx": { "$ref": "#/$defs/nullableNumber" },
+
+    "kvDiskSpaceMb": { "$ref": "#/$defs/nullableNumber" },
+    "kv_disk_space_mb": { "$ref": "#/$defs/nullableNumber" },
+    "DS4_KV_DISK_SPACE_MB": { "$ref": "#/$defs/nullableNumber" },
+    "ds4_kv_disk_space_mb": { "$ref": "#/$defs/nullableNumber" },
+
+    "power": { "$ref": "#/$defs/power" },
+    "DS4_POWER": { "$ref": "#/$defs/power" },
+    "ds4_power": { "$ref": "#/$defs/power" }
   },
   "$defs": {
     "nullableString": {
@@ -78,6 +91,12 @@
     "modelQuant": {
       "type": ["string", "null"],
       "enum": ["q2", "q2-imatrix", "q4", null]
+    },
+    "power": {
+      "type": ["number", "null"],
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Integer between 1 and 100. Sets --power for ds4-server."
     }
   }
 }

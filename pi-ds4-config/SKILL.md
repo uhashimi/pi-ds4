@@ -28,6 +28,9 @@ Common settings:
 - `runtimeDir`: existing antirez/ds4 checkout instead of `~/.pi/ds4/support`
 - `supportRepo` / `supportBranch`: runtime checkout source
 - `serverBinary` / `watchdogScript`: custom executable/script paths
+- `ctx` / `DS4_CTX`: context window size (default `100000`); sets `--ctx` for ds4-server and `contextWindow` for the Pi model
+- `kvDiskSpaceMb` / `DS4_KV_DISK_SPACE_MB`: on-disk KV cache size in MB (default `8192`); sets `--kv-disk-space-mb` for ds4-server
+- `power` / `DS4_POWER`: inference power level 1–100 (default `80`); sets `--power` for ds4-server
 - `apiKey`: token Pi sends to the local provider (default `dsv4-local`)
 
 After editing, run `/reload` or restart pi. Use `/ds4` to inspect the live ds4 log.

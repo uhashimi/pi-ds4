@@ -26,7 +26,7 @@ const PROVIDER_ID = "ds4";
 const MODEL_ID = "deepseek-v4-flash";
 const Q2_IMATRIX_MODEL_ID = "deepseek-v4-flash-q2-imatrix";
 // Keep the historical typo for on-disk lease/state compatibility with older installs.
-const MANAGED_BY = "pi-sd4-provider";
+const MANAGED_BY = "pi-ds4-provider";
 
 const DS4_DIR = join(homedir(), ".pi", "ds4");
 const SETTINGS_FILE = join(DS4_DIR, "settings.json");
@@ -112,7 +112,13 @@ const BASE_URL = "http://127.0.0.1:8000";
 const API_BASE_URL = `${BASE_URL}/v1`;
 const PROVIDER_API = selectedProtocol();
 const PROVIDER_BASE_URL = PROVIDER_API === "anthropic-messages" ? BASE_URL : API_BASE_URL;
-const SERVER_BASE_ARGS = ["--ctx", "100000", "--kv-disk-space-mb", "8192"];
+const CTX_VALUE = configNumber("DS4_CTX", 100000);
+const KV_DISK_SPACE_MB = configNumber("DS4_KV_DISK_SPACE_MB", 8192);
+const POWER_VALUE = configNumber("DS4_POWER", 80);
+if (POWER_VALUE < 1 || POWER_VALUE > 100) {
+	throw new Error(`DS4_POWER=${POWER_VALUE} must be between 1 and 100`);
+}
+const SERVER_BASE_ARGS = ["--ctx", String(CTX_VALUE), "--kv-disk-space-mb", String(KV_DISK_SPACE_MB), "--power", String(POWER_VALUE)];
 
 const HEARTBEAT_MS = 10_000;
 const LEASE_TTL_MS = 45_000;
@@ -1313,7 +1319,7 @@ function ds4Model(id: string, name: string) {
 			xhigh: "xhigh",
 		},
 		input: ["text"],
-		contextWindow: 100000,
+		contextWindow: CTX_VALUE,
 		maxTokens: 384000,
 		cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
 	};

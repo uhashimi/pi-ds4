@@ -8,5 +8,8 @@
   "modelQuant": null,
   "readyTimeoutMs": 600000,
   "serverBinary": null,
-  "watchdogScript": null
+  "watchdogScript": null,
+  "ctx": null,
+  "kvDiskSpaceMb": null,
+  "power": null
 }
